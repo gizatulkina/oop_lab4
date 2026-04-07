@@ -2,6 +2,14 @@ import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget
 
 
+class Shape:
+    def __init__(self, x, y, w, h):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+
+
 class Canvas(QWidget):
     def __init__(self):
         super().__init__()
