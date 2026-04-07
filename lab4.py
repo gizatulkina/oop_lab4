@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget
-from PyQt6.QtGui import QPainter
-from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QPainter, QPolygon
+from PyQt6.QtCore import Qt, QPoint
 
 
 class Shape:
@@ -23,6 +23,23 @@ class Rectangle(Shape):
     def draw(self, painter):
         painter.setBrush(Qt.GlobalColor.blue)
         painter.drawRect(self.x, self.y, self.w, self.h)
+
+
+class Circle(Shape):
+    def draw(self, painter):
+        painter.setBrush(Qt.GlobalColor.green)
+        painter.drawEllipse(self.x, self.y, self.w, self.h)
+
+
+class Triangle(Shape):
+    def draw(self, painter):
+        points = QPolygon([
+            QPoint(self.x + self.w // 2, self.y),
+            QPoint(self.x, self.y + self.h),
+            QPoint(self.x + self.w, self.y + self.h)
+        ])
+        painter.setBrush(Qt.GlobalColor.red)
+        painter.drawPolygon(points)
 
 
 class Canvas(QWidget):
