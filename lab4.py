@@ -9,6 +9,13 @@ class Shape:
         self.w = w
         self.h = h
 
+    def contains(self, px, py):
+        return self.x <= px <= self.x + self.w and self.y <= py <= self.y + self.h
+
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
+
 
 class Canvas(QWidget):
     def __init__(self):
