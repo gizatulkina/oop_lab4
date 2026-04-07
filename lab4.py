@@ -35,6 +35,13 @@ class Canvas(QWidget):
         for shape in self.shapes:
             shape.draw(painter)
 
+    def mousePressEvent(self, event):
+        pos = event.position().toPoint()
+        x, y = pos.x(), pos.y()
+
+        self.shapes.append(Rectangle(x, y, 80, 60))
+        self.update()
+
 
 class Editor(QMainWindow):
     def __init__(self):
