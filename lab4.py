@@ -1,5 +1,7 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt6.QtGui import QPainter
+from PyQt6.QtCore import Qt
 
 
 class Shape:
@@ -17,9 +19,21 @@ class Shape:
         self.y += dy
 
 
+class Rectangle(Shape):
+    def draw(self, painter):
+        painter.setBrush(Qt.GlobalColor.blue)
+        painter.drawRect(self.x, self.y, self.w, self.h)
+
+
 class Canvas(QWidget):
     def __init__(self):
         super().__init__()
+        self.shapes = []
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        for shape in self.shapes:
+            shape.draw(painter)
 
 
 class Editor(QMainWindow):
